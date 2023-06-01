@@ -1,0 +1,56 @@
+<!-- HTML code to implement ondragend event using drag
+and drop event attribute -->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>ondragend Event Attribute</title>
+	<style>
+		.box {
+			width: 30%;
+			height: 50px;
+			margin: 20px;
+			border: 1px solid black;
+			text-align: center;
+		}
+	</style>
+	<script>
+		/* Function to start dragging */
+		function starts_drag(event) {
+			event.dataTransfer.setData("Text", event.target.id);
+			document.getElementById("demo").innerHTML =
+				"Dragging is in work";
+		}
+		/* Function to stop dragging */
+		function end_drag(event) {
+			document.getElementById("demo").innerHTML =
+				"Dragging works properly";
+		}
+		/* Function to allow drop content */
+		function drop_allow(event) {
+			event.preventDefault();
+		}
+		/* Function to drop the content */
+		function drop_event(event) {
+			event.preventDefault();
+			var data = event.dataTransfer.getData("Text");
+			event.target.appendChild(document.getElementById(data));
+		}
+	</script>
+</head>
+<body>
+	<!-- ondragend event starts from here -->
+	<div class="box" ondrop="drop_event(event)"
+		ondragover="drop_allow(event)">
+		<p ondragstart="starts_drag(event)"
+			ondragend="end_drag(event)" draggable="true" id="gfg">
+			GeeksforGeeks
+		
+<p>
+	</div>
+	<div class="box" ondrop="drop_event(event)"
+		ondragover="drop_allow(event)"></div>
+	<!-- ondragend event complete here -->
+	<p id="demo"></p>
+
+</body>
+</html>
